@@ -1,0 +1,127 @@
+#!/bin/bash
+
+COMMAND_FILE="/usr/local/bin/baby_commands.txt"
+
+# Function to add a new command
+add_command() {
+    echo "Enter the command name:"
+    read command_name
+    echo "Enter the action to perform (e.g., 'sudo apt update'):"
+    read command_action
+    echo "$command_name:$command_action" >> "$COMMAND_FILE"
+    echo "New command added: $command_name -> $command_action"
+}
+
+# Function to display the introduction
+display_intro() {
+    echo " "
+    echo "********************************************************"
+    echo "*                                                      *"
+    echo "*              Welcome to LxaNce-World                 *"
+    echo "*                                                      *"
+    echo "********************************************************"
+    echo " "
+    echo "Hey Dude,"
+    echo "I'm Baby..."
+    echo "Your personal Assistant..."
+    echo " "
+    echo "Creator: LxaNce-Hacker [Prince Katiyar]"
+    echo " "
+    echo "I'm a versatile and user-friendly command-line tool designed to"
+    echo "simplify your system management tasks. Created by LxaNce-Hacker (Prince Katiyar),"
+    echo "I'm allows you to run various system commands"
+    echo "effortlessly by using simple, human-readable phrases."
+    echo " "
+    echo "### Key Features:"
+    echo "- Simplified Commands: Use intuitive phrases to perform common tasks,"
+    echo "  such as 'upgrade yourself' or 'Good Nyt'."
+    echo "- Dynamic Command Addition: Easily add new commands without editing"
+    echo "  the script by using 'Hey Baby add new cmd'."
+    echo "- Case Insensitivity: Baby recognizes commands regardless of their case."
+    echo " "
+    echo "Stay sharp and hack the planet!"
+    echo " "
+    echo "### NOTE : You can also customized me..."
+}
+
+# Function to display help information
+display_help() {
+    echo "Usage: Hey Baby <command> or Hey <command> Baby or Hey <command> Baby <command>"
+    echo
+    echo "Commands:"
+    echo "  upgrade yourself  - Run system update and upgrade"
+    echo "  Good Morning      - Print a good morning message"
+    echo "  Good Nyt          - Shut down the system"
+    echo "  autoremove        - Remove unnecessary packages"
+    echo
+    echo "To add a new command, use:"
+    echo "  Hey Baby add new cmd"
+    echo "  Then follow the prompts to enter the command name and the action to perform."
+    echo
+    echo "Commands are case-insensitive."
+    echo "All custom commands are stored in /usr/local/bin/baby_commands.txt."
+    echo "Use 'Hey Baby <custom_command>' to execute a custom command."
+}
+
+# Combine all arguments into a single string
+input="$*"
+
+# Convert input to lowercase
+input=$(echo "$input" | tr '[:upper:]' '[:lower:]')
+
+# Remove all occurrences of "Baby" and extra spaces
+command=$(echo "$input" | sed -e 's/baby//g' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/[[:space:]]\{1,\}/ /g')
+
+# Check if the resulting command is empty
+if [[ -z "$command" ]]; then
+    echo "Usage: Hey <command> Baby or Hey Baby <command> or Hey <command> Baby <command>"
+    exit 1
+fi
+
+# Handle predefined commands
+case "$command" in
+    "upgrade yourself" | "update yourself")
+        echo "Ok...I'm upgrading myself."
+        echo " "
+        sudo apt-get update && sudo apt-get upgrade -y && sudo apt full-upgrade -y
+        ;;
+    "good morning" | "gud morng" | "gud morng")
+        echo "Good Morning Dude..."
+        echo " "
+        ;;
+    "good night" | "gud nyt")
+        echo "Good Night..."
+        echo " "
+        sudo shutdown now
+        ;;
+    "autoremove")
+        echo "Ok...I'm removing some not working pkgs..."
+        echo " "
+        sudo apt autoremove
+        ;;
+    "add new cmd")
+        add_command
+        ;;
+    "give me your intro" | "your introduction" | "your intro please")
+        display_intro
+        ;;
+    "help")
+        display_help
+        ;;
+    *)
+        # Check custom commands from the command file
+        while IFS=: read -r cmd_name cmd_action; do
+            if [[ "$command" == "$cmd_name" ]]; then
+                eval "$cmd_action"
+                exit 0
+            fi
+        done < "$COMMAND_FILE"
+
+
+        # Handle predefined commands or pass through to shell
+        echo "Executing system command: $command"
+        eval "$command"
+
+        echo "You've entered unknown command: $command"
+        ;;
+esac
