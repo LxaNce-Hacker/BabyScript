@@ -1,25 +1,25 @@
-# Baby Command Script
+# Baby Script
 <div style="display: flex; justify-content: center;">
-    <img src="Baby.png" alt="Image" width="200" height="150" style="object-fit: cover; border-radius: 90%;">
+    <img src="Baby.png" alt="Image" style="object-fit: cover; border-radius: 90%;">
 </div>
-This repository contains a bash script that allows you to execute system commands using the keyword "Baby" anywhere in your input string. The script supports predefined commands and allows you to add new commands dynamically without editing the script.
+This repository contains a bash script that allows you to execute system commands using the keyword "Hey Baby" anywhere in your input string. The script supports predefined commands and allows you to add new commands dynamically without editing the script.
 
 #
 ###### ${{\color{red} Creator}}\ Prince\ Katiyar$
 #
 ## Features
 
-- Execute predefined system commands using the keyword "Baby".
+- Execute predefined system commands using the keyword "Hey Baby".
 - Add new commands dynamically.
 - Case-insensitive command recognition.
 
 ## Installation
 
 1. Clone the repository:
-```git clone https://github.com/LxaNce-Hacker/Baby```
+```git clone https://github.com/LxaNce-Hacker/BabyScript```
 
 2. Change the directory:
-```cd Baby```
+```cd BabyScript```
 
 3. Setup the tool:
 ```bash setup.sh```
@@ -27,7 +27,7 @@ This repository contains a bash script that allows you to execute system command
 ## Usage
 
 - Running Predefined Commands : <br>
-  - You can run predefined commands by typing them with the keyword "Baby" anywhere in the string. <br>
+  - You can run predefined commands by typing them with the keyword "Hey Baby" anywhere in the string. <br>
   ```Hey Baby upgrade yourself``` <br>
   ```Hey Baby Good Night``` <br>
   ```etc``` <br>
@@ -50,7 +50,7 @@ Contributions are welcome! Please open an issue or submit a pull request with yo
 
 ## Support
 
-If you encounter any issues or have any questions, please open an issue on the [GitHub repository](https://github.com/LxaNce-Hacker/Baby/issues).
+If you encounter any issues or have any questions, please open an issue on the [GitHub repository](https://github.com/LxaNce-Hacker/BabyScript/issues).
 
 ## Contact
 
