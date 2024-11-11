@@ -54,5 +54,5 @@ If you encounter any issues or have any questions, please open an issue on the [
 
 ## Contact
 
-If you have any questions or feedback, please feel free to contact me at support@lxance.xyz.
+If you have any questions or feedback, please feel free to contact me at support@lxance.site.
 
